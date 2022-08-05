@@ -1,2 +1,2 @@
 # alowaretest
-A simple comment implemantation exemple project for Laravel
+A simple comment implemantation example project for Laravel
