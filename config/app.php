@@ -41,6 +41,8 @@ return [
 
     'debug' => (bool) env('APP_DEBUG', false),
 
+    'maxdepth'=> env('MAX_DEPTH',3),
+
     /*
     |--------------------------------------------------------------------------
     | Application URL

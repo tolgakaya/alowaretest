@@ -37,5 +37,14 @@ class Handler extends ExceptionHandler
         $this->reportable(function (Throwable $e) {
             //
         });
+        $this->renderable(function(\Illuminate\Validation\ValidationException $e, $request) {
+            return response()->json([
+                'result' => 1,
+                'errors' => $e->errors()
+            ], 422);
+        });
+        $this->renderable(function(\App\Exceptions\MaximumDepthException $e, $request) {
+            return response()->json("Already reached the maximum comment depth!!!", 422);
+        });
     }
 }

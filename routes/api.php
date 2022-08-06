@@ -1,7 +1,8 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
+use App\Http\Middleware\XssSanitization;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,6 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::get('/post', [PostController::class, 'index']);
+Route::delete('/comment/{id}', [PostController::class, 'DeleteComment']);
+Route::group(['middleware' => [XssSanitization::class]], function () {
+    Route::post('/comment', [PostController::class, 'CreateComment']);
+     Route::put('/comment', [PostController::class, 'UpdateComment']);
+     });
+
+
